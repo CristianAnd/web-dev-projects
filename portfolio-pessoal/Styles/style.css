@@ -20,6 +20,7 @@
 
   .header {
     background-image: url(/Assets/Imgs/banner-bg.png);
+    height: 100vh;
     flex-direction: column;
     align-items: center;
     padding: 20px;
@@ -57,25 +58,32 @@
     position: relative;
     display: inline-block;
     padding: 0.5rem 0;
-  }
-  
-  .nav-list a::after {
+}
+.nav-list a::after,
+.nav-list a::before {
     content: "";
     position: absolute;
-    width: 100%;
+    width: 0;
     height: 2px;
     bottom: 0;
-    left: 0;
-    background: none;
+    left: 50%;
+    background: #ffffff;
     visibility: hidden;
-    transform: scaleX(0);
     transition: all 0.3s ease-in-out;
-  }
-  
-  .nav-list a:hover::after {
+}
+
+.nav-list a::before {
+    left: 50%;
+    right: auto;
+}
+
+.nav-list a:hover::after,
+.nav-list a:hover::before {
     visibility: visible;
-    transform: scaleX(1);
-  }
+    width: 100%;
+    left: 0;
+    right: 0;
+}
   
   .nav-list a:hover {
     color:#9b9b9b;
@@ -105,7 +113,20 @@
 .left-header {
     max-width: 50%;
     margin-top: -5%;
+    animation: slideInFromLeft 0.5s ease-out;
 }
+
+@keyframes slideInFromLeft {
+  from {
+      opacity: 0;
+      transform: translateX(-100%);
+  }
+  to {
+      opacity: 1;
+      transform: translateX(0);
+  }
+}
+
 
 .left-header h1 {
     font-size: 3rem;
